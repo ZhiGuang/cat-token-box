@@ -202,7 +202,7 @@ export async function broadcast(
   wallet: WalletService,
   txHex: string,
 ): Promise<string | Error> {
-  if (config.useRpc()) {
+  if (!config.getApiKey() && config.useRpc()) {
     return rpc_broadcast(config, wallet.getWalletName(), txHex);
   }
 
